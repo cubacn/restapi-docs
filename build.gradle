@@ -1,0 +1,51 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'org.asciidoctor:asciidoctor-gradle-plugin:1.5.9.2'
+    }
+}
+
+def docVersion = '7.1'
+
+apply plugin: 'org.asciidoctor.convert'
+
+asciidoctor {
+    sourceDir = file('adoc')
+    sources {
+        include 'en/restapi.adoc'
+    }
+    outputDir = file('build')
+    attributes 'revnumber': docVersion
+}
+
+asciidoctor.doLast {
+    copy {
+        from 'img'
+        into 'build/html5/en/img'
+    }
+    
+    copy {
+        from 'styles'
+        into 'build/html5/en/styles'
+    }
+
+    copy {
+        from 'js'
+        into 'build/html5/en/js'
+    }
+}
+
+build.dependsOn(asciidoctor)
+
+build.doLast {
+    def tmpDir = new File(buildDir, "tmp/war/restapi")
+    copy {
+        from "$buildDir/html5/en"
+        into tmpDir
+        rename 'restapi.html', 'index.html'
+    }
+    ant.jar(destfile: "$buildDir/war/restapi-${docVersion}.war", basedir: tmpDir)
+}

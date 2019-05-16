@@ -1,0 +1,20 @@
+:sourcesdir: ../../source
+
+[[overview]]
+== Overview
+
+The universal REST API provides the following functionality:
+
+* CRUD operations on entities.
+* Execution of predefined JPQL queries.
+* Execution of service methods.
+* Getting metadata (entities, views, enumerations, datatypes).
+* Getting current user permissions (access to entities, attributes, specific permissions).
+* Getting current user information (name, language, time zone, etc.).
+* Uploading and downloading files.
+
+REST API uses the OAuth2 protocol for authentication and supports anonymous access.
+
+**The detailed documentation of the API endpoints:** {rest_swagger_url}.
+
+The <<usage_example>> section contains a lot of examples demonstrating REST API features in action. Below we provide a formal description of some features and configuration options.
