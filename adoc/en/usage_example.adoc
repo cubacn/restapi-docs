@@ -5,7 +5,10 @@
 
 This section contains REST API usage examples.
 
-The detailed information about REST API methods is written according to http://swagger.io/specification[Swagger] specification and is available at address {rest_swagger_url}.
+[TIP]
+====
+See the detailed documentation on the API endpoints at {rest_swagger_url}.
+====
 
 include::usage_example/ex_get_token.adoc[]
 

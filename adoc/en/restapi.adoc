@@ -18,8 +18,9 @@
 :lang: en
 :version-label: Version
 :revremark: Copyright (c) 2019 Haulmont (www.haulmont.com)
-:main_man_url: https://doc.cuba-platform.com/manual-{revnumber}
-:rel_notes_url: http://files.cuba-platform.com/cuba/release-notes/{revnumber}
+:marketplace: https://www.cuba-platform.com/marketplace
+:manual: https://doc.cuba-platform.com/manual-{revnumber}
+:release_notes: http://files.cuba-platform.com/cuba/release-notes/{revnumber}
 :rest_swagger_url: http://files.cuba-platform.com/swagger/{revnumber}
 
 :!sectnums:
@@ -27,6 +28,8 @@
 :sectnums:
 
 include::overview.adoc[]
+
+include::getting_started.adoc[]
 
 include::features.adoc[]
 

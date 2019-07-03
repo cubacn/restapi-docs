@@ -3,7 +3,7 @@
 [[features]]
 == Features
 
-This section covers features and configuration of the REST API.
+This section covers the REST API features and configuration options. For practical usage examples, see the <<usage_example,next>> section.
 
 include::features/queries_config.adoc[]
 

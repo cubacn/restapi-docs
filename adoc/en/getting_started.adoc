@@ -1,0 +1,44 @@
+:sourcesdir: ../../source
+
+[[getting_started]]
+== Getting Started
+
+Installation::
++
+--
+* If you are using Studio 11+, open the *CUBA > Marketplace* main menu item, then find and install the *REST API* add-on.
+
+* Otherwise, see {manual}/app_components_usage.html[Using Public Add-ons] documentation for how to install the add-on using its coordinates in the repository. The coordinates can be copied from the add-on page at {marketplace}[Marketplace].
+
+Keep in mind that the add-on is built only for the framework version 7.1 and above. In the earlier versions, REST API was included in the core framework.
+--
+
+Testing basic functionality::
++
+--
+* In Studio, you should see the *REST* element in the CUBA project tree after Gradle refresh is completed.
+
+* Start the application and test the REST API using `curl` command line tool:
+
+. Request OAuth token:
++
+----
+curl -X POST \
+  http://localhost:8080/app/rest/v2/oauth/token \
+  -H 'Authorization: Basic Y2xpZW50OnNlY3JldA==' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'grant_type=password&username=admin&password=admin'
+----
++
+You will get a JSON response with some `access_token` value. Use it for further requests in the `Authorization` header.
+
+. Request the list of roles (replace `<access_token>` with the value obtained on the previous step):
++
+----
+  curl -X GET \
+  'http://localhost:8080/app/rest/v2/entities/sec$Role' \
+  -H 'Authorization: Bearer <access_token>'
+----
++
+The response will contain all registered roles, provided that the user for which the token was obtained has permissions to read the `sec$Role` entity.
+--

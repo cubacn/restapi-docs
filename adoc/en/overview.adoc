@@ -3,7 +3,7 @@
 [[overview]]
 == Overview
 
-The universal REST API provides the following functionality:
+The add-on provides a universal REST API with the following functionality:
 
 * CRUD operations on entities.
 * Execution of predefined JPQL queries.
@@ -15,6 +15,9 @@ The universal REST API provides the following functionality:
 
 REST API uses the OAuth2 protocol for authentication and supports anonymous access.
 
-**The detailed documentation of the API endpoints:** {rest_swagger_url}.
+All REST API endpoints work with data according to the authenticated user permissions set in {manual}/security_subsystem.html[security subsystem].
 
-The <<usage_example>> section contains a lot of examples demonstrating REST API features in action. Below we provide a formal description of some features and configuration options.
+[TIP]
+====
+The detailed documentation on the API endpoints is published at {rest_swagger_url}.
+====
