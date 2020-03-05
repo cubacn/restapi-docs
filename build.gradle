@@ -71,5 +71,5 @@ build.doLast {
         into tmpRuDir
         rename 'restapi.html', 'index.html'
     }
-    ant.jar(destfile: "$buildDir/war/restapi-ru-${docVersion}.war", basedir: tmpRuDir)
+    ant.jar(destfile: "$buildDir/war/restapi-${docVersion}-ru.war", basedir: tmpRuDir)
 }
