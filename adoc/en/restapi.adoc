@@ -17,7 +17,7 @@
 :sectanchors:
 :lang: en
 :version-label: Version
-:revremark: Copyright (c) 2019 Haulmont (www.haulmont.com)
+:revremark: Copyright (c) 2020 Haulmont (www.haulmont.com)
 :xsd_url: http://schemas.haulmont.com/restapi/{revnumber}
 :marketplace: https://www.cuba-platform.com/marketplace
 :manual: https://doc.cuba-platform.com/manual-{revnumber}

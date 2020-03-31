@@ -10,6 +10,8 @@
 Детальная информация о методах REST API доступна по адресу {rest_swagger_url}.
 ====
 
+Убедитесь, что роль с включенным REST API назначена пользователю.
+
 include::usage_example/ex_get_token.adoc[]
 
 include::usage_example/ldap.adoc[]

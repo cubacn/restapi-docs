@@ -10,6 +10,8 @@ This section contains REST API usage examples.
 See the detailed documentation on the API endpoints at {rest_swagger_url}.
 ====
 
+Ensure, that the role with enabled REST API is added to a user.
+
 include::usage_example/ex_get_token.adoc[]
 
 include::usage_example/ldap.adoc[]

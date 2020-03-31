@@ -1,9 +1,13 @@
 :sourcesdir: ../../source
 
 [[security]]
-== Security Implications When Using REST API
+== Security in REST API
 
-Universal REST API provides powerful means to deal with arbitrary data from domain model without creation of custom REST endpoints. However, if you enable the REST API in your application, you must configure {manual}/security_subsystem.html[security] (Roles/Access Groups) and always keep it in actual state on a production system in order to prevent access to some sensitive data.
+Уou should configure a {manual}/roles.html[role] that includes `cuba.restApi.enabled` specific permission for users logging in to the system through the REST API. If you don’t do it, the users will not be able to log in via REST.
+
+=== Legacy Security Implications
+
+If you use previous CUBA versions or migrate to CUBA 7.2, {manual}/legacy_roles.html[legacy roles and permissions] are used. So, to enable the REST API in your application, you must configure security (Roles/Access Groups) and always keep it in the actual state on a production system in order to prevent access to some sensitive data.
 
 Here are some rules you should follow when the REST API is turned on:
 
