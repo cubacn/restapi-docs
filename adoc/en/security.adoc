@@ -3,7 +3,7 @@
 [[security]]
 == Security in REST API
 
-Уou should configure a {manual}/roles.html[role] that includes `cuba.restApi.enabled` specific permission for users logging in to the system through the REST API. If you don’t do it, the users will not be able to log in via REST.
+REST API defines its own `REST` {manual}/roles.html#security_scope[security scope]. You should configure a separate set of {manual}/roles.html[roles] that includes `cuba.restApi.enabled` specific permission for users logging in to the system through the REST API. If you don’t do it, the users will not be able to log in via REST.
 
 === Legacy Security Implications
 
