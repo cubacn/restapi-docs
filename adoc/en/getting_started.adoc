@@ -32,6 +32,8 @@ Keep in mind that the add-on is built only for the framework version 7.1 and abo
 --
 * In Studio, you should see the *REST* element in the CUBA project tree after Gradle refresh is completed.
 
+* Configure security according to <<security,security>> section.
+
 * Start the application and test the REST API using `curl` command line tool:
 
 . Request OAuth token:
