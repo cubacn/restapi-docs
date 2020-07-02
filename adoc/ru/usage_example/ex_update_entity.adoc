@@ -25,3 +25,7 @@ include::{sourcesdir}/rest-update-order-request.json[]
 include::{sourcesdir}/rest-update-order-response.json[]
 ----
 
+[TIP]
+====
+JSON объект из примера выше содержит атрибут `version`, это означает, что сущность `sales$Order` реализует интерфейс {manual}/entity_attr_annotations.html#version_annotation[Versioned] и, таким образом, поддерживает оптимистичную блокировку. Чтобы включить оптимистичную блокировку сущностей, установите свойство приложения <<cuba.rest.optimisticLockingEnabled,cuba.rest.optimisticLockingEnabled>> в `true`. Обратите внимание, что если  атрибут `version` не содержится в JSON, оптимистичная блокировка работать не будет.
+====

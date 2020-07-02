@@ -25,3 +25,7 @@ The response body will contain a modified entity:
 include::{sourcesdir}/rest-update-order-response.json[]
 ----
 
+[TIP]
+====
+The JSON object above provides the `version` attribute which implies that the `sales$Order` entity is {manual}/entity_attr_annotations.html#version_annotation[Versioned] and supports optimistic locking. In order to enable optimistic locking in your project, set the <<cuba.rest.optimisticLockingEnabled,cuba.rest.optimisticLockingEnabled>> application property to `true`. Note that if the version is not specified in the JSON, optimistic locking doesn't work.
+====
