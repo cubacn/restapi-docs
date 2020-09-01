@@ -188,7 +188,22 @@ Enables storing of REST API security tokens in the database. By default, tokens 
 
 Stored in the database.
 
-Interface: `ServerConfig`
+Interface: `RestConfig`
+
+Default value: `false`
+
+Used in the Middleware block.
+--
+
+[[cuba.rest.syncTokenReplication]]
+cuba.rest.syncTokenReplication::
++
+--
+Specifies whether newly created tokens should be sent to the cluster synchronously. By default, tokens are sent to the cluster asynchronously.
+
+Stored in the application properties.
+
+Interface: `RestConfig`
 
 Default value: `false`
 
@@ -207,7 +222,7 @@ Used in the Web Client and Web Portal blocks.
 --
 
 [[cuba.rest.queriesConfig]]
-cuba.rest.queriesConfig::
+cuba.rest.queriesConfig::`
 +
 --
 {manual}/app_properties.html#additive_app_properties[Additive] property defining a file that contains a list of JPQL queries available for application REST API calls.

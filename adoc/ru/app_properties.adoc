@@ -188,7 +188,22 @@ cuba.rest.storeTokensInDb::
 
 Хранится в базе данных.
 
-Интерфейс: `ServerConfig`
+Интерфейс: `RestConfig`
+
+Значение по умолчанию: `false`
+
+Используется в блоке Middleware.
+--
+
+[[cuba.rest.syncTokenReplication]]
+cuba.rest.syncTokenReplication::
++
+--
+Включает сихронную репликацию созданных токенов между кластерами Middleware. По умолчанию токены отправляются в кластер асинхронно.
+
+Хранится в свойствах приложения.
+
+Интерфейс: `RestConfig`
 
 Значение по умолчанию: `false`
 
