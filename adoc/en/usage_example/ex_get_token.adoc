@@ -3,11 +3,11 @@
 [[rest_api_v2_ex_get_token]]
 === Getting an OAuth Token
 
-An OAuth token is required for any REST API method (except when you are using an <<rest_api_v2_anonymous, anonymous access>>). A token can be obtained by the POST request on the address:
+An OAuth token is required for any REST API method (except when you are using <<rest_api_v2_anonymous, anonymous access>>). A token can be obtained by the POST request on the address:
 
 `\http://localhost:8080/app/rest/v2/oauth/token`
 
-An access to this endpoint is protected with a basic authentication. REST API client identifier and password is used for basic authentication. Please note that these are not an application user login and password. REST API client id and password are defined in the application properties <<cuba.rest.client.id, cuba.rest.client.id>> and <<cuba.rest.client.secret, cuba.rest.client.secret>> (the default values are `client` and `secret`). You must pass the client id and secret, separated by a single colon (":") character, within a base64 encoded string in the `Authorization` header.
+Access to this endpoint is protected with basic authentication using the REST API client's identifier and password. Please note that these are not an application user login and password. REST API client id and password are generated when the add-on is added. You can view or change this values in the <<cuba.rest.client.id, cuba.rest.client.id>> and <<cuba.rest.client.secret, cuba.rest.client.secret>> application properties of the `web-app.properties` file. You should pass the client identifier and password, separated by a single colon (":") character, within a base64 encoded string in the `Authorization` header.
 
 The request type must be `application/x-www-form-urlencoded`, the encoding is `UTF-8`.
 
@@ -16,6 +16,14 @@ The request must contain the following parameters:
 * `grant_type` - `password`.
 * `username` - application user login.
 * `password` - application user password.
+
+For example, for the values
+
+[source, plain]
+----
+include::{sourcesdir}/cuba-rest-client-properties.properties[]
+----
+the token request looks like this:
 
 [source, httprequest]
 ----

@@ -30,13 +30,16 @@ Keep in mind that the add-on is built only for the framework version 7.1 and abo
 
 === Testing Basic Functionality
 --
-* In Studio, you should see the *REST* element in the CUBA project tree after Gradle refresh is completed.
+* You should see the *REST* element in the CUBA project tree after Gradle refresh is completed in Studio.
 
-* Configure security according to <<security,security>> section.
+* Configure security according to <<security,Security>> section:
 
-* Start the application and test the REST API using `curl` command line tool:
+** Create a role that includes `cuba.restApi.enabled` specific permission and grants permissions to read the required entities and attributes.
+** Assign the created role to the user.
 
-. Request OAuth token:
+* Start the application and test the REST API using the `curl` command-line tool:
+
+. <<rest_api_v2_ex_get_token,Request OAuth token>>:
 +
 ----
 curl -X POST \
@@ -48,7 +51,7 @@ curl -X POST \
 +
 You will get a JSON response with some `access_token` value. Use it for further requests in the `Authorization` header.
 
-. Request the list of roles (replace `<access_token>` with the value obtained on the previous step):
+. <<rest_api_v2_ex_get_entities_list,Request the list of roles>> (replace `<access_token>` with the value obtained on the previous step):
 +
 ----
   curl -X GET \

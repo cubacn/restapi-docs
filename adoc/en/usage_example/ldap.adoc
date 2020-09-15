@@ -32,7 +32,7 @@ You can obtain OAuth token using the following end-point:
 
 `\http://localhost:8080/app/rest/v2/ldap/token`
 
-An access to this endpoint is protected with the basic authentication. REST API client identifier and password are used for basic authentication. Please note that these are not the application user login and password. REST API client id and password are defined in the application properties <<cuba.rest.client.id, cuba.rest.client.id>> and <<cuba.rest.client.secret, cuba.rest.client.secret>> (the default values are `client` and `secret`). You must pass the client id and secret, separated by a single colon (":") character, within a base64 encoded string in the `Authorization` header.
+Access to this endpoint is protected with basic authentication using the REST API client's identifier and password. Please note that these are not the application user login and password. REST API client id and password are generated when the add-on is added. You can view or change this values in the <<cuba.rest.client.id, cuba.rest.client.id>> and <<cuba.rest.client.secret, cuba.rest.client.secret>> application properties of the `web-app.properties` file. You should pass the client identifier and password, separated by a single colon (":") character, within a base64 encoded string in the `Authorization` header.
 
 Request parameters are the same as for standard authentication:
 
