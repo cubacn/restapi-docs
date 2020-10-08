@@ -30,6 +30,8 @@
 
 include::overview.adoc[]
 
+include::release_notes.adoc[]
+
 include::getting_started.adoc[]
 
 include::features.adoc[]

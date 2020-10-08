@@ -1,0 +1,42 @@
+[[release_notes]]
+== Примечания к выпускам
+
+[discrete]
+[[release_7_2_2]]
+=== Release 7.2.2
+
+Resolved issues:
+
+* #108 https://github.com/cuba-platform/restapi/issues/108[When sorting by an Association field use the instance name rather than the id]
+* #2961 https://github.com/cuba-platform/cuba/issues/2961[Problems with web anonymous session when deploying web/core separately]
+* #115 https://github.com/cuba-platform/restapi/issues/115[ServerTokenStoreImpl lack of proper logging]
+* #120 https://github.com/cuba-platform/restapi/issues/120[isNull operator in the /entities/search endpoint doesn't work with references]
+* #117 https://github.com/cuba-platform/restapi/issues/117[Decrease log level of unsupported Accept Language header]
+* #113 https://github.com/cuba-platform/restapi/issues/113[Return 403 response for GET /files endpoint if reading of FileDescriptor entity is forbidden]
+* #116 https://github.com/cuba-platform/restapi/issues/116[Filename gets garbled when downloading via REST API]
+* #97 https://github.com/cuba-platform/restapi/issues/97[rest-api-swagger.yaml doesn't fully conform to the specification]
+* #102 https://github.com/cuba-platform/restapi/issues/102[ServerTokenStoreImpl does not publish refresh token events to cluster]
+* #87 https://github.com/cuba-platform/restapi/issues/87[Server responds with 500 when filter contains empty conditions array]
+* #88 https://github.com/cuba-platform/restapi/issues/88[Add endpoints for effective permissions]
+* #2284 https://github.com/cuba-platform/cuba/issues/2284[Simplify creating multi-tenant applications]
+
+
+[discrete]
+[[release_7_2_1]]
+=== Release 7.2.1
+
+* Добавлена предустановленная роль *rest-api-access*, включающая разрешение `cuba.restApi.enabled`.
+
+[discrete]
+[[release_7_2_0]]
+=== Release 7.2.0
+
+* Поддержка платфомы версии 7.2.x.
+
+[discrete]
+[[release_7_1_1]]
+=== Release 7.1.1
+
+Resolved issue:
+
+* #45 https://github.com/cuba-platform/restapi/issues/45[ REST API ignores attribute permissions for related entities]
