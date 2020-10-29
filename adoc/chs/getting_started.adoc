@@ -1,0 +1,62 @@
+:sourcesdir: ../../source
+
+[[getting_started]]
+== 开始使用
+
+=== 安装
+
+按照下面的介绍在您的项目安装该插件。
+
+. 在 CUBA 项目树双击 *Add-ons*。
++
+image::addons.png[]
++
+. 选择 *Marketplace* 标签页，再找到 *REST API* 插件。
++
+image::restapi_addon.png[]
++
+. 点击 *Install* 按钮，然后点击 *Apply & Close* 按钮。
++
+image::addon_install.png[]
++
+. 弹窗中点击 *Continue* 。
++
+image::addon_continue.png[]
+
+安装完成，您的项目可以使用 *REST API* 插件。
+
+需要注意，这个插件只能用在框架版本 7.1 以上。之前版本的框架中，默认已经带了 REST API。
+
+=== 测试基本功能
+--
+* 当 Gradle 刷新了项目依赖之后，在 Studio 中，您应该能在左边的 CUBA 项目树看到 *REST* 元素。
+
+* 按照 <<security,安全>> 章节配置安全管理：
+
+** 创建一个包含 `cuba.restApi.enabled` 特殊权限的角色，并给角色赋予能读取必要实体和实体属性的权限。
+** 为用户分配该角色。
+
+* 启动应用程序，并用命令行工具 `curl` 测试 API：
+
+. <<rest_api_v2_ex_get_token,请求 OAuth token>>：
++
+----
+curl -X POST \
+  http://localhost:8080/app/rest/v2/oauth/token \
+  -H 'Authorization: Basic Y2xpZW50OnNlY3JldA==' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'grant_type=password&username=admin&password=admin'
+----
++
+您应当能得到一个带有 `access_token` 的响应。这个 token 可以在将来的请求中用作 `Authorization` header。
+
+. <<rest_api_v2_ex_get_entities_list,请求角色列表>> （用上一步获取的 token 替换 `<access_token>`）：
++
+----
+  curl -X GET \
+  'http://localhost:8080/app/rest/v2/entities/sec$Role' \
+  -H 'Authorization: Bearer <access_token>'
+----
++
+响应中会包含所有的角色，但是需要保证用在获取 token 时的用户有权限读取 `sec$Role` 实体。
+--

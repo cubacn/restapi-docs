@@ -1,0 +1,21 @@
+:sourcesdir: ../../source
+
+[[security]]
+== REST API 中的安全机制
+
+REST API 有其自己的 `REST` {manual}/roles.html#security_scope[安全范围] 。您需要单独配置一组带有 `cuba.restApi.enabled` 特殊权限的 {manual}/roles.html[角色] 。只有分配了这些角色的用户才能使用 REST API 登录系统。否则，用户没法以 REST 方式登录。
+
+=== 遗留的安全隐患
+
+如果您使用的是之前版本的 CUBA 或者迁移至 CUBA 7.2，则在您的系统中使用的是 {manual}/legacy_roles.html[旧版的角色和权限] 。所以，如需启用 REST API，必须配置安全机制（角色、访问组），并且在生产系统也保持实际的权限状态，这样才能保护一些敏感数据。
+
+如果开启了 REST API，您可以参考以下规则：
+
+* 为不需要使用 REST API 的用户始终禁用 REST 的访问权限。可以在角色编辑界面的 `CUBA > REST API > Use REST API` 特殊权限处配置。
+* 使用 “默认拒绝” 的安全策略：为具有 REST API 访问权限的用户分配 `DENYING` 角色。由于项目的数据模型总是在变，很容易忘记添加访问限制。
+* 为 REST API 用户配置并分配非公共实体的访问组限制。
+* 记住，`EntityManager` 不会强制使用访问组限制，所以在需要作为 REST API 的中间件方法中，尽量使用 `DataManager`。
+* 记住，`DENYING` 角色并不默认带有实体属性限制。如果需要，则单独为每个实体配置实体属性权限。
+* 在生产环境使用唯一的 <<cuba.rest.client.secret,client secret>>
+
+如果您的项目不是很容易配置完备的安全机制，则可以考虑实施自定义的 REST endpoints，而不要使用全局 REST API。

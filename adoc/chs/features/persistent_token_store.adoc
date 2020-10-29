@@ -1,0 +1,8 @@
+:sourcesdir: ../../../source
+
+[[rest_api_v2_persistent_token_store]]
+=== token 存储持久化
+
+默认情况下，OAuth token 只保存在内存。如果也需要在数据库保存这些 token，设置 <<cuba.rest.storeTokensInDb,cuba.rest.storeTokensInDb>> 应用程序属性为 `true`。这个应用程序属性的值是保存在数据库的，因此可以在系统界面 *Administration > Application Properties* 修改这个值。
+
+数据库中保存的过期 token 需要定期清理。这个定时任务的时间安排 cron 表达式通过 <<cuba.rest.deleteExpiredTokensCron,cuba.rest.deleteExpiredTokensCron>> 定义。

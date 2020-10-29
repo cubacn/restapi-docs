@@ -1,0 +1,51 @@
+:sourcesdir: ../../../source
+
+[[rest_api_v2_ldap]]
+=== 使用 LDAP 进行 REST API 身份验证
+
+可以使用以下属性启用 REST 的 LDAP 身份验证：
+
+* `cuba.rest.ldap.enabled` - 是否启用 LDAP 身份验证。
+
+* `cuba.rest.ldap.urls` – LDAP 服务器 URL。
+
+* `cuba.rest.ldap.base` – 用户搜索的基准 DN。
+
+* `cuba.rest.ldap.user` – 有权从目录中读取信息的系统用户的专有名称。
+
+* `cuba.rest.ldap.password` – {manual}/app_properties_reference.html#cuba.web.ldap.user[cuba.web.ldap.user] 属性中定义的系统用户的密码。
+
+* `cuba.rest.ldap.userLoginField` - 用于匹配登录名的 LDAP 用户属性的名称。默认情况下是 `sAMAccountName`（适用于 Active Directory）。
+
+文件 {manual}/app_properties_files.html[local.app.properties] 示例：
+
+[source, properties]
+----
+cuba.rest.ldap.enabled = true
+cuba.rest.ldap.urls = ldap://192.168.1.1:389
+cuba.rest.ldap.base = ou=Employees,dc=mycompany,dc=com
+cuba.rest.ldap.user = cn=System User,ou=Employees,dc=mycompany,dc=com
+cuba.rest.ldap.password = system_user_password
+----
+
+可以使用以下 endpoint 获取 OAuth token：
+
+`\http://localhost:8080/app/rest/v2/ldap/token`
+
+该 endpoint 使用基本身份验证进行访问保护，即 REST API 客户端 ID 和密码。请注意，这里的客户端 ID 和密码不是应用程序的用户登录名和密码。客户端 ID 和密码在添加 REST API 插件后生成。可以在 `web-app.properties` 中查看或修改，通过 <<cuba.rest.client.id, cuba.rest.client.id>> 和 <<cuba.rest.client.secret, cuba.rest.client.secret>> 应用程序属性。必须在 `Authorization` 请求头中以 base64 编码的字符串传递客户端 ID 和密码，客户端 ID 和密码使用冒号（":"）分隔。
+
+请求参数与标准验证请求的参数一样：
+
+* `grant_type` - `password`。
+* `username` - 应用程序用户登录名。
+* `password` - 应用程序用户密码。
+
+请求类型必须是 `application/x-www-form-urlencoded`，编码方式为 `UTF-8`。
+
+另外，也可以禁用使用登录名和密码进行的标准验证：
+
+[source, properties]
+----
+cuba.rest.standardAuthenticationEnabled = false
+----
+

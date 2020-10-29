@@ -1,0 +1,31 @@
+:sourcesdir: ../../../source
+
+[[rest_api_v2_ex_update_entity]]
+=== 更新现有实体实例
+
+可以使用 *PUT* 请求地址更新现有的 `sales$Order` 实体实例：
+
+`\http://localhost:8080/app/rest/v2/entities/sales$Order/5d7ff8e3-7828-ba94-d6ba-155c5c4f2a50`
+
+这里 URL 的最后一部分是实体标识符。
+
+必须将 OAuth token 放在带有 `Bearer` 类型的 `Authorization` 请求头中。
+
+请求体必须包含一个只包含要更新的字段的 JSON 对象，例如：
+
+[source, json]
+----
+include::{sourcesdir}/rest-update-order-request.json[]
+----
+
+响应体将包含一个修改过的实体：
+
+[source, json]
+----
+include::{sourcesdir}/rest-update-order-response.json[]
+----
+
+[TIP]
+====
+上面的 JSON 对象提供了 `version` 属性，意味着 `sales$Order` 实体是有 {manual}/entity_attr_annotations.html#version_annotation[版本] 的，并且支持乐观锁机制。如需启动乐观锁机制，可以设置 <<cuba.rest.optimisticLockingEnabled,cuba.rest.optimisticLockingEnabled>> 应用程序为 `true`。注意，如果 JSON 中没有指定版本，则乐观锁不会起作用。
+====

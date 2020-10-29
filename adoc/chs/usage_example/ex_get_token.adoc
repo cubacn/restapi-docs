@@ -1,0 +1,75 @@
+:sourcesdir: ../../../source
+
+[[rest_api_v2_ex_get_token]]
+=== 获取 OAuth token
+
+任何 REST API 方法都需要 OAuth token（除了使用<<rest_api_v2_anonymous,匿名访问>>）。可以通过 POST 方式获取 token：
+
+`\http://localhost:8080/app/rest/v2/oauth/token`
+
+该 endpoint 使用基本身份验证进行访问保护，即 REST API 客户端 ID 和密码。请注意，这里的客户端 ID 和密码不是应用程序的用户登录名和密码。客户端 ID 和密码在添加 REST API 插件后生成。可以在 `web-app.properties` 中查看或修改，通过 <<cuba.rest.client.id, cuba.rest.client.id>> 和 <<cuba.rest.client.secret, cuba.rest.client.secret>> 应用程序属性。必须在 `Authorization` 请求头中以 base64 编码的字符串传递客户端 ID 和密码，客户端 ID 和密码使用冒号（":"）分隔。
+
+请求类型必须是 `application/x-www-form-urlencoded`，编码方式为 `UTF-8`。
+
+请求必须包含以下参数：
+
+* `grant_type` - `password`。
+* `username` - 应用程序用户登录名。
+* `password` - 应用程序用户密码。
+
+比如，对于如下参数
+
+[source, plain]
+----
+include::{sourcesdir}/cuba-rest-client-properties.properties[]
+----
+token 请求是这样：
+
+[source, httprequest]
+----
+include::{sourcesdir}/rest-access-token-request.txt[]
+----
+
+也可以使用 https://curl.haxx.se/[cURL] ：
+
+[source, plain]
+----
+include::{sourcesdir}/rest-access-token-request-curl.txt[]
+----
+
+方法返回一个 JSON 对象：
+
+[source, json]
+----
+include::{sourcesdir}/rest-access-token-response.json[]
+----
+
+access token 值在 `access_token` 属性中。
+
+要使用 access token，将其放在带有 `Bearer` 类型的 `Authorization` 请求头中，例如：
+
+[source, plain]
+----
+Authorization: Bearer 29bc6b45-83cd-4050-8c7a-2a8a60adf251
+----
+
+`refresh_token` 属性包含 refresh token 值。Refresh token 不能像 access token 那样用于访问受保护的资源，但它具有比 access token 更长的生命周期，并且可以用于在当前的 access token 到期时获取新的access token。
+
+使用 refresh token 获取新 access token 的请求必须包含以下参数：
+
+* `grant_type` - `refresh_token`
+* `refresh_token` - refresh token 值
+
+[source, httprequest]
+----
+include::{sourcesdir}/rest-access-token-using-refresh-request.txt[]
+----
+
+另请参阅以下与 token 相关的应用程序属性：
+
+* <<cuba.rest.client.tokenExpirationTimeSec,cuba.rest.client.tokenExpirationTimeSec>>
+
+* <<cuba.rest.client.refreshTokenExpirationTimeSec,cuba.rest.client.refreshTokenExpirationTimeSec>>
+
+* <<cuba.rest.client.authorizedGrantTypes,cuba.rest.client.authorizedGrantTypes>>
+

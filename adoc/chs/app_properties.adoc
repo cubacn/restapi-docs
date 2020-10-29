@@ -1,0 +1,246 @@
+:sourcesdir: ../../source
+
+[[app_properties]]
+[appendix]
+== 应用程序属性
+
+[[cuba.rest.allowedOrigins]]
+cuba.rest.allowedOrigins::
++
+--
+定义可以访问 REST API 的源。以英文逗号分隔。
+
+默认值： `*`
+
+可以在 Web 客户端和 Web Portal blocks 使用。
+--
+
+[[cuba.rest.anonymousEnabled]]
+cuba.rest.anonymousEnabled::
++
+--
+对匿名用户启用 REST API 访问。
+
+默认值： `false`
+
+可以在 Web 客户端和 Web Portal blocks 使用。
+--
+
+[[cuba.rest.client.authorizedGrantTypes]]
+cuba.rest.client.authorizedGrantTypes::
++
+--
+为默认的 REST API 客户端定义支持的许可类型列表。需要禁用 refresh token，可以从列表中删除 `refresh_token`。
+
+默认值： `password,external,refresh_token`
+
+可以在 Web 客户端和 Web Portal blocks 使用。
+--
+
+[[cuba.rest.client.id]]
+cuba.rest.client.id::
++
+--
+定义 REST API 客户端的标识符。客户端，在这里，并不是说平台的用户，而是一个使用 REST API 的应用（某些 web portal 或者手机 app）。使用客户端用户名密码做访问 REST API token endpoint 的基本认证。
+
+默认值： `client`
+
+可以在 Web 客户端和 Web Portal blocks 使用。
+--
+
+[[cuba.rest.client.secret]]
+cuba.rest.client.secret::
++
+--
+定义 REST API 客户端的密码。客户端，在这里，并不是说平台的用户，而是一个使用 REST API 的应用（某些 web portal 或者手机 app）。使用客户端用户名密码做访问 REST API token endpoint 的基本认证。应用程序属性的值需要在具体的密码值（比如 `secret`）之前包含一个 `PasswordEncoder` 的标识符（比如 `{noop}`）。
+
+如果该密码用来做基础验证，则不需要使用 `PasswordEncoder` 标识符。
+
+当添加 REST API 插件时自动生成。
+
+可以在 Web 客户端和 Web Portal blocks 使用。
+--
+
+[[cuba.rest.client.tokenExpirationTimeSec]]
+cuba.rest.client.tokenExpirationTimeSec::
++
+--
+定义默认客户端 REST API access token 过期时间的时限，单位是秒。
+
+默认值： `43200` (12 小时)
+
+可以在 Web 客户端和 Web Portal blocks 使用。
+--
+
+[[cuba.rest.client.refreshTokenExpirationTimeSec]]
+cuba.rest.client.refreshTokenExpirationTimeSec::
++
+--
+定义默认客户端 REST API refresh token 过期时间的时限，单位是秒。
+
+默认值： `31536000` (365 天)
+
+可以在 Web 客户端和 Web Portal blocks 使用。
+--
+
+[[cuba.rest.deleteExpiredTokensCron]]
+cuba.rest.deleteExpiredTokensCron::
++
+--
+指定用来做定时任务的表达式，从数据库删除过期的 token。
+
+默认值： `0 0 3 * * ?`
+
+可以在 Middleware block 使用。
+--
+
+[[cuba.rest.jsonTransformationConfig]]
+cuba.rest.jsonTransformationConfig::
++
+--
+{manual}/app_properties.html#additive_app_properties[Additive] 属性，用来定义 REST API 使用的 JSON 转换配置文件，这些文件在客户端请求一些特定版本数据模型的信息时会用到。
+
+平台使用 {manual}/resources.html[资源接口] 来加载此文件，所以这个文件可以放在 classpath 或者 {manual}/conf_dir.html[配置目录] 。
+
+文件的 XSD schema： {xsd_url}/rest-json-transformations.xsd
+
+默认值： none
+
+示例：
+
+[source, properties]
+----
+cuba.rest.jsonTransformationConfig = +com/company/sample/json-transformations.xml
+----
+
+可以在 Web 客户端和 Web Portal blocks 使用。
+--
+
+[[cuba.rest.maxUploadSize]]
+cuba.rest.maxUploadSize::
++
+--
+可以使用 REST API 上传的文件大小的最大值，单位是字节。
+
+默认值： `20971520` (20 Mb)
+
+可以在 Web 客户端和 Web Portal blocks 使用。
+--
+
+[[cuba.rest.optimisticLockingEnabled]]
+cuba.rest.optimisticLockingEnabled::
++
+--
+如果在 JSON 中提供了实体的 `version` 属性，启用 `Versioned` 实体的乐观锁。
+
+默认值： `false`
+
+可以在 Web 客户端和 Web Portal blocks 使用。
+--
+
+[[cuba.rest.requiresSecurityToken]]
+cuba.rest.requiresSecurityToken::
++
+--
+如果是 true，会在加载的实体中包含一个特殊的系统属性，并且需要在保存实体的时候给 REST 接口传回一个同样的属性。细节参考 <<rest_api_v2_security_constraints>>。
+
+默认值： `false`
+
+可以在 Web 客户端和 Web Portal blocks 使用。
+--
+
+[[cuba.rest.reuseRefreshToken]]
+cuba.rest.reuseRefreshToken::
++
+--
+定义是否可以重复使用 refresh token。如果设置为 `false`，当使用 refresh token 获取 access token 的时候，系统会发出一个新的 refresh token，老的 refresh token 将会失效。
+
+默认值： `true`
+
+可以在 Web 客户端和 Web Portal blocks 使用。
+--
+
+[[cuba.rest.servicesConfig]]
+cuba.rest.servicesConfig::
++
+--
+{manual}/app_properties.html#additive_app_properties[累加] 属性，用来定义包含应用 REST API 对应的 {manual}/services.html[services] 列表的文件。
+
+平台使用 {manual}/resources.html[资源接口] 来加载此文件，所以这个文件可以放在 classpath 或者 {manual}/conf_dir.html[配置目录] 。
+
+文件的 XSD schema： {xsd_url}/rest-services-v2.xsd.
+
+默认值： none
+
+示例：
+
+[source, properties]
+----
+cuba.rest.servicesConfig = +com/company/sample/app-rest-services.xml
+----
+
+可以在 Web 客户端和 Web Portal blocks 使用。
+--
+
+[[cuba.rest.storeTokensInDb]]
+cuba.rest.storeTokensInDb::
++
+--
+启用在数据库保存 REST API security token。默认情况下，令牌只是在内存中存储。
+
+保存在数据库。
+
+配置接口： `ServerConfig`
+
+默认值： `false`
+
+可以在 Middleware block 使用。
+--
+
+[[cuba.rest.syncTokenReplication]]
+cuba.rest.syncTokenReplication::
++
+--
+配置是否在集群中同步发送新创建的 token。默认情况，token 是异步发送至集群的。
+
+保存在应用程序属性文件中。
+
+配置接口： `RestConfig`
+
+默认值： `false`
+
+可以在 Middleware block 使用。
+--
+
+[[cuba.rest.tokenMaskingEnabled]]
+cuba.rest.tokenMaskingEnabled::
++
+--
+设置是否在应用程序日志中对 REST API 进行掩码处理。
+
+默认值： `true`
+
+可以在 Web 客户端和 Web Portal blocks 使用。
+--
+
+[[cuba.rest.queriesConfig]]
+cuba.rest.queriesConfig::
++
+--
+{manual}/app_properties.html#additive_app_properties[累加] 属性，用来定义包含应用程序 REST API 可用的 JPQL 查询列表的文件。
+
+平台使用 {manual}/resources.html[资源接口] 来加载此文件，所以这个文件可以放在 classpath 或者 {manual}/conf_dir.html[配置目录] 。
+
+文件的 XSD schema： {xsd_url}/rest-queries.xsd
+
+默认值： none
+
+示例：
+
+[source, properties]
+----
+cuba.rest.queriesConfig = +com/company/sample/app-rest-queries.xml
+----
+
+可以在 Web 客户端和 Web Portal blocks 使用。
+--

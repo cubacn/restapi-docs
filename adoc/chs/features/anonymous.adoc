@@ -1,0 +1,8 @@
+:sourcesdir: ../../../source
+
+[[rest_api_v2_anonymous]]
+=== 匿名访问
+
+默认情况下，匿名访问是禁用的。通过应用程序属性 <<cuba.rest.anonymousEnabled, cuba.rest.anonymousEnabled>> 来启用。如果请求中没有包含 `Authentication` 信息头，这个请求会被认为是匿名的。匿名访问的情况下， {manual}/securityContext.html[SecurityContext] 会包含匿名用户会话。
+
+给匿名用户配置权限，需要为匿名用户配置响应的 {manual}/roles.html[角色] 。匿名用户的登录名是由 {manual}/app_properties_reference.html#cuba.anonymousLogin[cuba.anonymousLogin] 应用程序属性指定。

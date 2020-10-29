@@ -1,0 +1,23 @@
+:sourcesdir: ../../source
+
+[[overview]]
+== 概览
+
+该插件提供全局的 REST API，具有以下功能：
+
+* 实体的 CRUD 操作
+* 执行预定义的 JPQL 查询。
+* 执行 service 方法
+* 获取元数据（实体、视图、枚举、数据类型）
+* 获取当前用户权限（访问实体、属性、特殊权限）
+* 获取当前用户信息（名称、语言、时区等）
+* 上传下载文件
+
+REST API 使用 OAuth2 协议进行用户验证，并支持匿名访问。
+
+所有的 REST API endpoints 在操作数据的时候，都按照 {manual}/security_subsystem.html[安全子系统] 配置的用户权限操作。
+
+[TIP]
+====
+API endpoints 的详细文档发布在 {rest_swagger_url} 。
+====
